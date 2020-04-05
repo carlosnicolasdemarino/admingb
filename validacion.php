@@ -9,9 +9,9 @@
   }
 
 	$hostname="localhost";
-	$username="id6652504_gastonbarbaccia";
+	$username="u666073011_gaston";
 	$password="ns2b7bfqbf";
-	$database="id6652504_gestion";
+	$database="u666073011_gestion";
 
         $connect = mysqli_connect($hostname,$username,$password,$database);
         if (mysqli_connect_errno()) {

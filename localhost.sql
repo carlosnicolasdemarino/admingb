@@ -19,10 +19,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `id6652504_gestion`
+-- Base de datos: `u666073011_gestion`
 --
-CREATE DATABASE IF NOT EXISTS `id6652504_gestion` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `id6652504_gestion`;
+CREATE DATABASE IF NOT EXISTS `u666073011_gestion` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `u666073011_gestion`;
 
 -- --------------------------------------------------------
 
