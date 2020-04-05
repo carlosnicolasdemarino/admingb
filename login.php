@@ -39,11 +39,11 @@
 
 	$_SESSION['id'] = session_id();
 
-	header("Location:https://www.admin-gb.ga/dashboard");	
+	header("Location:https://www.admingb.com/dashboard");	
 	
 	}else{
 
-	header('Location:https://www.admin-gb.com/');
+	header('Location:https://www.admingb.com/');
 	
 	}
 	
