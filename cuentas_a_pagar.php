@@ -11,7 +11,6 @@
 
 
      header('Location:/');
-u666073011_gestion
   
 
   }
