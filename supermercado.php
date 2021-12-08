@@ -1,716 +1,447 @@
 <?php
 
+include 'conexiondb.php';
 
 
-  session_start();
-
-
-
-  if(!isset($_SESSION['id'])){
+session_start();
 
 
 
-     header(u666073011_gestion);
-
-  
-
-  }
-
-	$hostname="localhost";
-
-	$username="u666073011_gaston";
-
-	$password="ns2b7bfqbf";
-
-	$database="id6652504_gestion";
+if (!isset($_SESSION['id'])) {
 
 
 
-        $connect = mysqli_connect($hostname,$username,$password,$database);
-
-        if (mysqli_connect_errno()) {
-
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-
-        }
+  header('Location:/');
+}
 
 
 
-        $fetch = mysqli_query($connect,"SELECT id, producto, precio, cantidad, precio_final FROM supermercado");     
+
+$connect = conexion_db();
+
+if (mysqli_connect_errno()) {
+
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 
 
 
-        
+$fetch = mysqli_query($connect, "SELECT id, producto, precio, cantidad, precio_final FROM supermercado");
+
+include 'header.php';
+include 'navbar.php';
+
+
 
 ?>
 
 
 
-<!DOCTYPE html>
 
-<html lang="en">
+<!--main content start-->
 
+<section id="main-content">
 
+  <section class="wrapper">
 
-<head>
+    <div class="row">
 
-  <meta charset="utf-8">
+      <div class="col-lg-12">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <ol class="breadcrumb">
 
-  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+          <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
 
-  <meta name="author" content="GeeksLabs">
-
-  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-
-  <link rel="shortcut icon" href="img/favicon.png">
-
-
-
-  <title>Panel de Administracion</title>
-
-
-
-  <!-- Bootstrap CSS -->
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- bootstrap theme -->
-
-  <link href="css/bootstrap-theme.css" rel="stylesheet">
-
-  <!--external css-->
-
-  <!-- font icon -->
-
-  <link href="css/elegant-icons-style.css" rel="stylesheet" />
-
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
-
-  <!-- Custom styles -->
-
-  <link href="css/style.css" rel="stylesheet">
-
-  <link href="css/style-responsive.css" rel="stylesheet" />
-
-
-
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-
-  <!--[if lt IE 9]>
-
-      <script src="js/html5shiv.js"></script>
-
-      <script src="js/respond.min.js"></script>
-
-      <script src="js/lte-ie7.js"></script>
-
-    <![endif]-->
-
-
-
-    <!-- =======================================================
-
-      Theme Name: NiceAdmin
-
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-
-      Author: BootstrapMade
-
-      Author URL: https://bootstrapmade.com
-
-    ======================================================= -->
-
-</head>
-
-
-
-<body>
-
-  <!-- container section start -->
-
-  <section id="container" class="">
-
-    <!--header start-->
-
-    <header class="header dark-bg">
-
-      <div class="toggle-nav">
-
-        <div class="icon-reorder tooltips" data-placement="bottom"><i class="icon_menu"></i></div>
+        </ol>
 
       </div>
 
+    </div>
 
+    <!-- page start-->
 
-      <!--logo start-->
+    <!-- Test -->
 
-      <a  class="logo">Panel de  <span class="lite">Administración</span></a>
 
-      <!--logo end-->
 
 
 
-      <div class="top-nav notification-row">
+    <form method="post" action="agregar_tabla_3.php">
 
-        <!-- notificatoin dropdown start-->
+      <div class="login-wrap">
 
-        <ul class="nav pull-right top-menu">
+        <div class="input-group">
 
+          <div class="input-group">
 
-
-          <!-- user login dropdown start-->
-
-          <li class="dropdown">
-
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-
-                            <span class="profile-ava">
-
-                                
-
-                            </span>
-
-                            <span class="username">Gaston Barbaccia</span>
-
-                            <b class="caret"></b>
-
-                        </a>
-
-            <ul class="dropdown-menu extended logout">
-
-              <div class="log-arrow-up"></div>
-
-              <li>
-
-                <a href="/cerrar_sesion"><i class="icon_key_alt"></i> Cerrar sesion</a>
-
-              </li>
-
-            </ul>
-
-          </li>
-
-          <!-- user login dropdown end -->
-
-        </ul>
-
-        <!-- notificatoin dropdown end-->
-
-      </div>
-
-    </header>
-
-    <!--header end-->
-
-
-
-    <!--sidebar start-->
-
-    <aside>
-
-      <div id="sidebar" class="nav-collapse ">
-
-        <!-- sidebar menu start-->
-
-        <ul class="sidebar-menu">
-
-          <li class=""> 
-
-            <a class="" href="dashboard">
-
-                          <i class="icon_house_alt"></i>
-
-                          <span>Dashboard</span>
-
-                      </a>
-
-          </li>
-
-          <li>
-
-            <a class="" href="agregar_servicio">
-
-                          <i class=icon_document_alt></i>
-
-                          <span>Agregar servicio</span>
-
-                      </a>
-
-          </li>
-
-          
-
-          <li>
-
-            <a class="" href="supermercado">
-
-                          <i class="icon_cart_alt"></i>
-
-                          <span>Supermercado</span>
-
-                      </a>
-
-          </li>
-
-          <li>
-
-            <a class="" href="validacion">
-
-                          <i class="icon_document_alt"></i>
-
-                          <span>Cuentas a pagar</span>
-
-                      </a>
-
-          </li>
-
-           <li>
-
-            <a class="" href="/cerrar_sesion">
-
-                          <i class=icon_key_alt></i>
-
-                          <span>Cerrar sesion</span>
-
-                      </a>
-
-          </li>
-
-        </ul>
-
-        <!-- sidebar menu end-->
-
-      </div>
-
-    </aside>
-
-
-
-    <!--main content start-->
-
-    <section id="main-content">
-
-      <section class="wrapper">
-
-        <div class="row">
-
-          <div class="col-lg-12">
-
-            <ol class="breadcrumb">
-
-              <li><i class="fa fa-home"></i><a href="dashboard">Home</a></li>
-
-            </ol>
+            <h2 style="font-size: 20px">Productos</h2>
 
           </div>
 
         </div>
 
-        <!-- page start-->
+        <hr />
 
-        <!-- Test -->
+        <div class="input-group">
 
+          <span class="input-group-addon"><label style="width: 80px">Producto</label></span>
 
+          <select name="producto" id="producto" class="form-control" style="width: 50%">
 
+            <option value="Aceite">Aceite </option>
 
+            <option value="Agua en bidon ">Agua en bidon </option>
 
-        <form method="post" action="agregar_tabla_3.php">
+            <option value="Atun en troso">Atun en troso</option>
 
-        <div class="login-wrap">
+            <option value="Atun desmenusado">Atun desmenusado</option>
 
-          <div class="input-group">
+            <option value="Azucar">Azucar</option>
 
-            <div class="input-group">
+            <option value="Arroz">Arroz </option>
 
-              <h2 style="font-size: 20px">Productos</h2>
+            <option value="Bola de lomo">Bola de lomo </option>
 
-            </div>
+            <option value="Bolsas de consorcio">Bolsas de consorcio</option>
 
-          </div>
+            <option value="Casancrem">Casancrem </option>
 
-        <hr/>
+            <option value="Carne picada">Carne picada </option>
 
-          <div class="input-group">
+            <option value="Caldo Verd.">Caldo Verd.</option>
 
-            <span class="input-group-addon"><label style="width: 80px">Producto</label></span>
+            <option value="Caldo Carne">Caldo Carne</option>
 
-            <select name="producto" id="producto" class="form-control" style="width: 50%">
+            <option value="Caldo Azafran">Caldo Azafran</option>
 
-                 <option value="Aceite">Aceite </option>
+            <option value="Caballa">Caballa </option>
 
-                <option value="Agua en bidon ">Agua en bidon </option>
+            <option value="Cereal">Cereal </option>
 
-                <option value="Atun en troso">Atun en troso</option>
+            <option value="Dentifrico">Dentifrico </option>
 
-                <option value="Atun desmenusado">Atun desmenusado</option>
+            <option value="Esponja cocina">Esponja cocina</option>
 
-                <option value="Azucar">Azucar</option>
+            <option value="Esponja Acero">Esponja Acero</option>
 
-                <option value="Arroz">Arroz </option>
+            <option value="Fideos Guisero">Fideos Guisero </option>
 
-                <option value="Bola de lomo">Bola de lomo </option>
+            <option value="Film">Film </option>
 
-                <option value="Bolsas de consorcio">Bolsas de consorcio</option>
+            <option value="Fuyi">Fuyi </option>
 
-                <option value="Casancrem">Casancrem </option>
+            <option value="Galletitas oreo">Galletitas oreo</option>
 
-                <option value="Carne picada">Carne picada </option>
+            <option value="Galletitas 9 de oro">Galletitas 9 de oro</option>
 
-                <option value="Caldo Verd.">Caldo Verd.</option>
+            <option value="Galletitas Bagley">Galletitas Bagley</option>
 
-                <option value="Caldo Carne">Caldo Carne</option>
+            <option value="Galletitas hogareñas">Galletitas Hogareñas</option>
 
-                <option value="Caldo Azafran">Caldo Azafran</option>
+            <option value="Guantes">Guantes </option>
 
-                <option value="Caballa">Caballa </option>
+            <option value="Grisines">Grisines </option>
 
-                <option value="Cereal">Cereal </option>
+            <option value="Harina">Harina </option>
 
-                <option value="Dentifrico">Dentifrico </option>
+            <option value="Jabon">Jabon</option>
 
-                <option value="Esponja cocina">Esponja cocina</option>
+            <option value="Jugos en sobre">Jugos en sobre</option>
 
-                <option value="Esponja Acero">Esponja Acero</option>
+            <option value="Jabon liquido">Jabon liquido </option>
 
-                <option value="Fideos Guisero">Fideos Guisero </option>
+            <option value="Jabon el polvo">Jabon el polvo </option>
 
-                <option value="Film">Film </option>
+            <option value="Jugos Botellas">Jugos Botellas </option>
 
-                <option value="Fuyi">Fuyi </option>
+            <option value="Leche">Leche</option>
 
-                <option value="Galletitas oreo">Galletitas oreo</option>
+            <option value="Lentejas">Lentejas </option>
 
-                <option value="Galletitas 9 de oro">Galletitas 9 de oro</option>         
+            <option value="Lysoform">Lysoform </option>
 
-                <option value="Galletitas Bagley">Galletitas Bagley</option>
+            <option value="Mandarinas">Mandarinas </option>
 
-                <option value="Galletitas hogareñas">Galletitas Hogareñas</option>
+            <option value="Mermelada">Mermelada </option>
 
-                <option value="Guantes">Guantes </option>
+            <option value="Mr. Musculo Rep.">Mr.Musculo Rep. </option>
 
-                <option value="Grisines">Grisines </option>
+            <option value="Mayonesa">Mayonesa </option>
 
-                <option value="Harina">Harina </option>
+            <option value="Paleta">Paleta </option>
 
-                <option value="Jabon">Jabon</option>
+            <option value="Pan Rallado">Pan Rallado </option>
 
-                <option value="Jugos en sobre">Jugos en sobre</option>
+            <option value="Pan panchos">Pan panchos </option>
 
-                <option value="Jabon liquido">Jabon liquido </option>
+            <option value="Pan lactal">Pan lactal </option>
 
-                <option value="Jabon el polvo">Jabon el polvo </option>
+            <option value="Papel Higienico ">Papel Higienico </option>
 
-                <option value="Jugos Botellas">Jugos Botellas </option>
+            <option value="Papas fritas ">Papas fritas </option>
 
-                <option value="Leche">Leche</option>
+            <option value="Picada especial">Picada especial </option>
 
-                <option value="Lentejas">Lentejas </option>
+            <option value="Pure de tomate">Pure de tomate</option>
 
-                <option value="Lysoform">Lysoform </option>
+            <option value="Puchero">Puchero</option>
 
-                <option value="Mandarinas">Mandarinas </option> 
+            <option value="Procenex">Procenex </option>
 
-                <option value="Mermelada">Mermelada </option>
+            <option value="Pollo">Pollo </option>
 
-                <option value="Mr. Musculo Rep.">Mr.Musculo Rep. </option> 
+            <option value="Protectores">Protectores </option>
 
-                <option value="Mayonesa">Mayonesa </option> 
+            <option value="Polenta">Polenta </option>
 
-                <option value="Paleta">Paleta </option>
+            <option value="Rollo de cocina">Rollo de cocina </option>
 
-                <option value="Pan Rallado">Pan Rallado </option>
+            <option value="Queso en barra">Queso en barra </option>
 
-                <option value="Pan panchos">Pan panchos </option>
+            <option value="Queso Cremoso">Queso Cremoso </option>
 
-                <option value="Pan lactal">Pan lactal </option>
+            <option value="Queso rallado">Queso rallado</option>
 
-                <option value="Papel Higienico ">Papel Higienico </option>
+            <option value="Queso tallarines">Queso tallarines </option>
 
-                <option value="Papas fritas ">Papas fritas </option>
+            <option value="Queso spagetti">Queso spagetti </option>
 
-                <option value="Picada especial">Picada especial </option>
+            <option value="RAID">RAID </option>
 
-                <option value="Pure de tomate">Pure de tomate</option>
+            <option value="Rollo de cocina">Rollo de cocina </option>
 
-                <option value="Puchero">Puchero</option>
+            <option value="Salame Calchaqui">Salame Calchaqui</option>
 
-                <option value="Procenex">Procenex </option>
+            <option value="Salchichas ">Salchichas </option>
 
-                <option value="Pollo">Pollo </option>
+            <option value="Sal fina">Sal fina </option>
 
-                <option value="Protectores">Protectores </option>
+            <option value="Savora">Savora </option>
 
-                <option value="Polenta">Polenta </option>
+            <option value="Servilleta">Servilleta </option>
 
-                <option value="Rollo de cocina">Rollo de cocina </option>
+            <option value="Sopa Knor">Sopa Knor </option>
 
-                <option value="Queso en barra">Queso en barra </option>
+            <option value="Suprema">Suprema</option>
 
-                <option value="Queso Cremoso">Queso Cremoso </option>
+            <option value="Speed energizante">Speed energizante</option>
 
-                <option value="Queso rallado">Queso rallado</option>
+            <option value="Tapa de asado">Tapa de asado</option>
 
-                <option value="Queso tallarines">Queso tallarines </option>
+            <option value="Tomate cherri">Tomate cherri</option>
 
-                <option value="Queso spagetti">Queso spagetti </option>
+            <option value="Tostadas">Tostadas</option>
 
-                <option value="RAID">RAID </option>
+            <option value="Yerba">Yerba </option>
 
-                <option value="Rollo de cocina">Rollo de cocina </option>
+            <option value="Yogurt bebible">Yogurt bebible</option>
 
-                <option value="Salame Calchaqui">Salame Calchaqui</option>
+            <option value="Yogurt entero">Yogurt entero</option>
 
-                <option value="Salchichas ">Salchichas </option>
+            <option value="Yogurt Sache">Yogurt Sache</option>
 
-                <option value="Sal fina">Sal fina </option>
+            <option value="Otros">Otros</option>
 
-                <option value="Savora">Savora </option>
+          </select>
 
-                <option value="Servilleta">Servilleta </option>
-
-                <option value="Sopa Knor">Sopa Knor </option>
-
-                <option value="Suprema">Suprema</option>
-
-                <option value="Speed energizante">Speed energizante</option>
-
-                <option value="Tapa de asado">Tapa de asado</option>
-
-                <option value="Tomate cherri">Tomate cherri</option>
-
-                <option value="Tostadas">Tostadas</option>
-
-                <option value="Yerba">Yerba </option>
-
-                <option value="Yogurt bebible">Yogurt bebible</option>
-
-                <option value="Yogurt entero">Yogurt entero</option>
-
-                <option value="Yogurt Sache">Yogurt Sache</option>
-
-                <option value="Otros">Otros</option>
-
-            </select>
-
-          </div>
+        </div>
 
         <br>
 
-          <div class="input-group">
+        <div class="input-group">
 
-            <span class="input-group-addon"><label style="width: 80px">Precio</label></span>
+          <span class="input-group-addon"><label style="width: 80px">Precio</label></span>
 
-            <input id="precio" name="precio" type="text" class="form-control" style="width: 50%" >
+          <input id="precio" name="precio" type="text" class="form-control" style="width: 50%">
 
-          </div>
-
-        <br>
-
-          <div class="input-group">
-
-            <span class="input-group-addon"><label style="width: 80px">Cantidad</label></span>
-
-            <select name="cantidad" id="cantidad" class="form-control" style="width: 50%">
-
-              <option value="1">1</option>
-
-              <option value="2">2</option>
-
-              <option value="3">3</option>
-
-              <option value="4">4</option>
-
-              <option value="5">5</option>
-
-              <option value="6">6</option>
-
-              <option value="7">7</option>
-
-              <option value="8">8</option>
-
-              <option value="9">9</option>
-
-              <option value="10">10</option>
-
-            </select>
-
-          </div>
+        </div>
 
         <br>
 
-       
+        <div class="input-group">
+
+          <span class="input-group-addon"><label style="width: 80px">Cantidad</label></span>
+
+          <select name="cantidad" id="cantidad" class="form-control" style="width: 50%">
+
+            <option value="1">1</option>
+
+            <option value="2">2</option>
+
+            <option value="3">3</option>
+
+            <option value="4">4</option>
+
+            <option value="5">5</option>
+
+            <option value="6">6</option>
+
+            <option value="7">7</option>
+
+            <option value="8">8</option>
+
+            <option value="9">9</option>
+
+            <option value="10">10</option>
+
+          </select>
+
+        </div>
+
+        <br>
+
+
 
       </div>
 
-        <div style="padding-left:40px;text-align:center;">
+      <div style="padding-left:40px;text-align:center;">
 
-          <button class="btn btn-primary btn-lg " style="width: 30%" type="submit" >Agregar</button>
+        <button class="btn btn-primary btn-lg " style="width: 30%" type="submit">Agregar</button>
 
-          <button class="btn btn-primary btn-lg " style="width: 30%" type="button" onclick="window.location.href='delete_table'">Nuevo</button>
+        <button class="btn btn-primary btn-lg " style="width: 30%" type="button" onclick="window.location.href='delete_table'">Nuevo</button>
 
-          </div>
+      </div>
 
-      </form>
+    </form>
 
-      <!-- fin de compras -->
+    <!-- fin de compras -->
 
-      
+
 
     <br>
 
-      
 
-      <!--Tabla de supermercado-->
 
-        <div class="row">
+    <!--Tabla de supermercado-->
 
-          <div class="col-sm-12">
+    <div class="row">
 
-            <section class="panel">
+      <div class="col-sm-12">
 
-              <header class="panel-heading" style="text-align: center;">
+        <section class="panel">
 
-                Supermercado
+          <header class="panel-heading" style="text-align: center;">
 
-              </header>
+            Supermercado
 
-              <table class="table table-striped">
+          </header>
 
-                <thead>
+          <table class="table table-striped">
 
-                  <tr>
+            <thead>
 
-                    <th>Producto</th>
+              <tr>
 
-                    <th>Precio x/u</th>
+                <th>Producto</th>
 
-                    <th>Cantidad</th>
+                <th>Precio x/u</th>
 
-                    <th>Precio Final</th>
+                <th>Cantidad</th>
 
-                 <!--   <th>Editar</th>-->
+                <th>Precio Final</th>
 
-                  </tr>
+                <!--   <th>Editar</th>-->
 
-                </thead>
+              </tr>
 
+            </thead>
 
 
 
 
-<?php
 
-        $suma_productos=0;
+            <?php
 
-        
+            $suma_productos = 0;
 
-        while($row=mysqli_fetch_array($fetch,MYSQLI_NUM)) {
 
 
+            while ($row = mysqli_fetch_array($fetch, MYSQLI_NUM)) {
 
-?>            
 
-                <tbody>
 
-                  <tr>
+            ?>
 
-                    <td><?php echo $row[1]?></td>
+              <tbody>
 
-                    <td><?php echo "$".$row[2]?></td>
+                <tr>
 
-                    <td><?php echo $row[3]?></td>
+                  <td><?php echo $row[1] ?></td>
 
-<?php
+                  <td><?php
 
-                $producto_x_precio=$row[2] * $row[3];
+                      if ($row[2] == 0) {
+                        echo "$ 0";
+                      } else {
+                        echo "$ " . $row[2];
+                      }
 
-?>                    
+                      ?></td>
 
-                    <td><?php echo "$".$producto_x_precio ?></td>
+                  <td><?php echo $row[3] ?></td>
 
-                    <td><a href="editar_producto.php?id=<?php echo $row[0]?>">Editar</a></td>
+                  <?php
+                  if ($row[2] == 0) {
+                    $producto_x_precio = 0;
+                  } else {
+                    $producto_x_precio = $row[2] * $row[3];
+                  }
+                  ?>
 
-                  </tr>
+                  <td><?php echo "$ " . $producto_x_precio ?></td>
 
-                </tbody>
+                  <td><a href="editar_producto.php?id=<?php echo $row[0] ?>">Editar</a></td>
 
-          
+                </tr>
 
-<?php           
+              </tbody>
 
-        //Se acumula el total de la suma de los productos
 
-                $suma_productos += $producto_x_precio;
 
-        }
+            <?php
 
+              //Se acumula el total de la suma de los productos
 
+              $suma_productos += $producto_x_precio;
+            }
 
-        //En total muestro el total de la suma de los precios finales de los productos
 
-        
 
+            //En total muestro el total de la suma de los precios finales de los productos
 
 
 
 
-        
 
-?>
 
-        
 
-        <td><?php echo "TOTAL:$". $suma_productos;?></td>
 
-            
 
-              </table>
+            ?>
 
-            </section>
 
-          </div>        
 
-        
+            <td><?php echo "TOTAL:$ " . $suma_productos; ?></td>
 
-        <!-- page end-->
 
-      </section>
 
-    </section>
+          </table>
 
+        </section>
 
+      </div>
+
+
+
+      <!-- page end-->
 
   </section>
 
-  <!-- container section end -->
-
-  <!-- javascripts -->
-
-  <script src="js/jquery.js"></script>
-
-  <script src="js/bootstrap.min.js"></script>
-
-  <!-- nicescroll -->
-
-  <script src="js/jquery.scrollTo.min.js"></script>
-
-  <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-
-  <!--custome script for all page-->
-
-  <script src="js/scripts.js"></script>
+</section>
 
 
+<?php
 
+include 'footer.php';
 
-
-</body>
-
-
-
-</html>
-
-
-
+?>

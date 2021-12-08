@@ -1,4 +1,7 @@
 <?php
+
+include 'conexiondb.php';
+
     $id=$_GET['id'];
    
 	$detalle= $_POST["detalle"];
@@ -8,12 +11,7 @@
     $pago= $_POST["pago"];
     
 
-	$hostname="localhost";
-	$username="u666073011_gaston";
-	$password="ns2b7bfqbf";
-	$database="u666073011_gestion";
-
-    $mysqli = new mysqli($hostname, $username,$password, $database);
+    $mysqli = conexion_db();
 
     //Chequeo que no de error la conexion con la base de datos
 

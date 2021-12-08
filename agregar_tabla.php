@@ -1,5 +1,7 @@
 <?php
 
+include 'conexiondb.php';
+
 	$mes= $_POST["mes"];
 	$tipo= $_POST["tipo"];
 	$fechavto= $_POST["fechavto1"];
@@ -7,12 +9,8 @@
 	$importe= $_POST["importe"];
 	$pago= $_POST["pago"];
 
-	$hostname="localhost";
-	$username="u666073011_gaston";
-	$password="ns2b7bfqbf";
-	$database="u666073011_gestion";
 
-    $mysqli = new mysqli($hostname, $username,$password, $database);
+    $mysqli = conexion_db();
 
     //Chequeo que no de error la conexion con la base de datos
 

@@ -1,14 +1,12 @@
 <?php
 
+include 'conexiondb.php';
+
 	$user= $_POST["usuario"];
 	$pass= $_POST["contrasena"];
 
-	$hostname="localhost";
-	$username="u666073011_gaston";
-	$password="ns2b7bfqbf";
-	$database="u666073011_gestion";
 
-    $mysqli = new mysqli($hostname, $username,$password, $database);
+    $mysqli = conexion_db();
 
     //Chequeo que no de error la conexion con la base de datos
     if ($mysqli->connect_errno) {
@@ -39,7 +37,8 @@
 
 	$_SESSION['id'] = session_id();
 
-	header("Location:https://www.admingb.com/dashboard");	
+	#header("Location:https://www.admingb.com/dashboard");	
+	header("Location:dashboard");	
 	
 	}else{
 

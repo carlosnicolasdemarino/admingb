@@ -1,5 +1,7 @@
 <?php
 
+include 'conexiondb.php';
+
 	$detalle= $_POST["detalle"];
 	$importe= $_POST["importe"];
     $mes= $_POST["mes"];
@@ -8,12 +10,7 @@
     $tarjeta= $_POST["tarjeta"];
     
 
-	$hostname="localhost";
-	$username="u666073011_gaston";
-	$password="ns2b7bfqbf";
-	$database="u666073011_gestion";
-
-    $mysqli = new mysqli($hostname, $username,$password, $database);
+    $mysqli = conexion_db();
 
     //Chequeo que no de error la conexion con la base de datos
 

@@ -388,7 +388,8 @@
 
         <div style="padding-left:20px;">
 
-        <button class="btn btn-primary btn-lg " style="width: 30%" type="submit" >Agregar</button>
+        <button class="btn btn-primary btn-lg " style="width: 25%" type="submit" >Agregar</button>
+        <a href="dashboard" class="btn btn-primary btn-lg " style="width: 25%" type="submit" >Cancelar</a>
 
         </div>
 

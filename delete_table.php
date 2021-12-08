@@ -1,15 +1,12 @@
 <?php
 
+include 'conexiondb.php';
+
 	$producto= $_POST["producto"];
 	$precio= $_POST["precio"];
 	$cantidad= $_POST["cantidad"];
 
-	$hostname="localhost";
-	$username="u666073011_gaston";
-	$password="ns2b7bfqbf";
-	$database="u666073011_gestion";
-
-    $mysqli = new mysqli($hostname, $username,$password, $database);
+    $mysqli = conexion_db();
 
     //Chequeo que no de error la conexion con la base de datos
 
