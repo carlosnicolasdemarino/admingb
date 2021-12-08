@@ -37,8 +37,8 @@ include 'conexiondb.php';
 
 	$_SESSION['id'] = session_id();
 
-	#header("Location:https://www.admingb.com/dashboard");	
-	header("Location:dashboard");	
+	header("Location:https://www.admingb.com/dashboard");	
+
 	
 	}else{
 
