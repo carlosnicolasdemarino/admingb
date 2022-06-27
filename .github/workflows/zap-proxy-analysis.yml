@@ -18,3 +18,8 @@ jobs:
           docker_name: 'owasp/zap2docker-stable'
           target: 'https://www.admingb.com'
           cmd_options: '-x report_xml'
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Zap Proxy Reporty
+           path: ${{github.workspace}}
