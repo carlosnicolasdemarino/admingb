@@ -17,5 +17,4 @@ jobs:
           token: ${{ secrets.SCANSECRET }}
           docker_name: 'owasp/zap2docker-stable'
           target: 'https://www.admingb.com'
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a'
+          cmd_options: '-x report_xml'
