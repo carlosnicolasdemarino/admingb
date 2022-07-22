@@ -5,7 +5,8 @@ name: CI
 on: push
 
 jobs: # Defino las tareas que va a hacer este CI   
-  build:  # Nombre de mi tarea
+
+  Tarea1:  # Nombre de mi tarea
     runs-on: ubuntu-latest # Donde se va a ejecutar
     steps: # Pasos que se van a ejecutar
       # Chequea el repositorio 
@@ -16,3 +17,9 @@ jobs: # Defino las tareas que va a hacer este CI
 
       - name: Saludo Flaco # Nombre de la ejecucion
         run: echo Hola Flaco! # Comando a ejecutar
+
+  Tarea2:  # Nombre de mi tarea
+    runs-on: ubuntu-latest
+    steps:
+      - name: Saludo3 # Nombre de la ejecucion
+        run: echo Hola, Gaston!  # Comando a ejecutar
