@@ -4,6 +4,7 @@ name: CI
 # Que se ejecute siempre que haya un cambio en cualquier rama
 on: push
 
+
 jobs: # Defino las tareas que va a hacer este CI   
 
   Tarea1:  # Nombre de mi tarea
