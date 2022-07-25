@@ -1,25 +1,82 @@
+
 # Nombre de la automatizacion de Integracion Continua (CI) Continius Integration
+
 name: CI
 
+
+
 # Que se ejecute siempre que haya un cambio en cualquier rama
+
 on: push
 
-jobs: # Defino las tareas que va a hacer este CI   
 
-  Tarea1:  # Nombre de mi tarea
-    runs-on: ubuntu-latest # Donde se va a ejecutar
-    steps: # Pasos que se van a ejecutar
-      # Chequea el repositorio 
-      - uses: actions/checkout@v3
 
-      - name: Saludo # Nombre de la ejecucion
-        run: echo Hola, Mundo!  # Comando a ejecutar
 
-      - name: Saludo Flaco # Nombre de la ejecucion
-        run: echo Hola Flaco! # Comando a ejecutar
 
-  Tarea2:  # Nombre de mi tarea
-    runs-on: ubuntu-latest
-    steps:
-      - name: Saludo3 # Nombre de la ejecucion
-        run: echo Hola, Gaston!  # Comando a ejecutar
+jobs: # Defino las tareas que va a hacer este CI
+
+Test: # Nombre de mi tarea
+
+runs-on: ubuntu-latest # Donde se va a ejecutar
+
+steps: # Pasos que se van a ejecutar
+
+
+
+# Chequea el repositorio
+
+- uses: actions/checkout@v3
+
+
+
+- name: PHP Copy Paste Detector
+
+uses: StephaneBour/actions-php-cpd@1.0
+
+with:
+
+dir: '.'
+
+
+
+dependency_check:
+
+runs-on: ubuntu-latest
+
+name: Dependency check Scan
+
+steps:
+
+- name: Checkout
+
+uses: actions/checkout@v2
+
+- name: Depcheck
+
+uses: dependency-check/Dependency-Check_Action@main
+
+id: Depcheck
+
+with:
+
+project: 'test'
+
+path: '.'
+
+format: 'HTML'
+
+args: >
+
+--failOnCVSS 1
+
+--enableRetired
+
+- name: Upload Test results
+
+uses: actions/upload-artifact@master
+
+with:
+
+name: Depcheck report
+
+path: ${{github.workspace}}/reports
